@@ -3,11 +3,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Questions from "./Questions";
 import "./css/Main.css";
+import {useSelector } from 'react-redux';
+import {selectUser } from '../../features/userSlice';
 
 const Main = ({ questions }) => {
+
+  const user = useSelector(selectUser)
+
+
   return (
     <div className="main">
-      <div className="main-container">
+      {user ? (    <div className="main-container">
         <div className="main-top">
           <h2>All Questions</h2>
           <Link to="/add-question">
@@ -45,7 +51,8 @@ const Main = ({ questions }) => {
             </>
           ))}
         </div>
-      </div>
+      </div>) : (<div className="hello-world">Hekkkooo </div>)}
+  
     </div>
   );
 };

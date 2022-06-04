@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import { Component, useEffect } from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import {
@@ -16,6 +16,12 @@ import Auth from './components/Auth'
 import { useDispatch, useSelector } from 'react-redux';
 import { login, logout, selectUser } from './features/userSlice';
 import { auth } from './firebase';
+
+import React from 'react';
+import { Buffer } from 'buffer';
+global.Buffer = Buffer;
+
+
 
 
 
@@ -58,10 +64,10 @@ const PrivateRoute = ({component: Component, ...rest}) => (
       <Router>
         <Header/>
         <Switch>
-        <Route exact path={user ? "/" : "/auth"} component={user ? QueueInterest : Auth }/>  
+        <Route exact path={user ? '/' : '/auth'} component={user ? QueueInterest :  Auth}/>  
         <PrivateRoute exact path='/add-question' component={Question}/>
         <PrivateRoute exact path='/question' component= {ViewQuestion} />
-          {/* <PrivateRoute exact path='/' component= {QueueInterest} /> */}
+        <PrivateRoute exact path='/' component= {QueueInterest} />
           
         </Switch>
       </Router>
