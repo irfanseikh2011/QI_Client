@@ -9,7 +9,7 @@ function Aside() {
         <div className='sidebar-container'>
             <div className='sidebar-options'>
                 <div className='sidebar-option'>
-                    <Link>Home</Link>
+                    <Link to='/'>Home</Link>
                 </div>
                 <div className='sidebar-option'>
                     <Link>Public</Link>
@@ -18,10 +18,10 @@ function Aside() {
                             <Public/>
                             <Link to='/'>Questions</Link>
                         </div>
-                        <div className='tags'>
+                        {/* <div className='tags'>
                             <p>Tags</p>
                             <p>Users</p>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
