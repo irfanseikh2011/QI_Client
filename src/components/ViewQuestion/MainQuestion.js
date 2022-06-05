@@ -9,6 +9,7 @@ import './index.css'
 import ReactHtmlParser from 'react-html-parser'
 import userSlice, { selectUser } from '../../features/userSlice';
 import { useSelector } from 'react-redux';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 
 const MainQuestion = () => {
     const user = useSelector(selectUser)
@@ -102,17 +103,18 @@ const MainQuestion = () => {
   return (
     <div className='main'>
         <div className='main-container'>
+        <div className='link-tag-mobile link-tag'><Link to='/'><QuestionAnswerIcon/>Question Bank</Link></div>
             <div className='main-top'>
-                <h2 className='main-question'>{questionData?.title}</h2>
+                <h2 className='main-question question-title-box'>{questionData?.title}</h2>
                 <Link to="/add-question">
-                    <button>Ask Question</button>
+                    <button className="button-ask">Ask Question</button>
                 </Link>
             </div>
             <div className='main-desc'>
                 <div className='info'>
                     <p>{new Date(questionData?.created_at).toLocaleString()}</p>
                     <p>Active <span>today</span></p>
-                    <p>Viewed <span>43 times</span></p>
+                    <p>Viewed <span>11 times</span></p>
                 </div>
             </div>
             <div className='all-questions'>
@@ -127,7 +129,7 @@ const MainQuestion = () => {
                         </div>
                     </div>
                     <div className='question-answer'> 
-                        <p>{ReactHtmlParser(questionData?.body)}</p>
+                        <h5 className='question-body'>{ReactHtmlParser(questionData?.body)}</h5>
                         <div className='author'>
                             <small>asked at {new Date(questionData?.created_at).toLocaleString()}</small>
                             <div className='auth-details'>
@@ -183,7 +185,7 @@ const MainQuestion = () => {
                             </div>
                         </div>
                         <div className='question-answer'> 
-                            <p>{ReactHtmlParser(_q?.answer)}</p>
+                            <h5 className='answer-body'>{ReactHtmlParser(_q?.answer)}</h5>
                             <div className='author'>
                                 <small>at  {new Date(_q?.created_at).toLocaleString()}</small>
                                 <div className='auth-details'>

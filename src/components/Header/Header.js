@@ -27,7 +27,7 @@ const history = useHistory()
         <img src="./logo.png" alt="logo"/>
         </Link>
           <Link to="/">
-          <h3>Queue Interest</h3>
+          <h3 className="logoName">Queue Interest</h3>
           </Link>
         </div>
         <div className="header-right">

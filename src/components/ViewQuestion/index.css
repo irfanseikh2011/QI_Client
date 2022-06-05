@@ -79,3 +79,19 @@
   .comments > p:hover {
       color: #0151f0d8;
   }
+
+  .question-body {
+    background: linear-gradient(90deg, rgba(228,203,251,1) 26%, rgba(238,235,238,1) 100%, rgba(20,78,68,1) 100%);
+    width: fit-content;
+    padding: 1em;
+    border-radius: 8px;
+  }
+
+
+  .answer-body {
+    background: linear-gradient(90deg, rgba(249,250,231,1) 26%, rgba(229,244,198,1) 100%, rgba(20,78,68,1) 100%);
+    width: fit-content;
+    padding: 1em;
+    border-radius: 8px;
+
+  }

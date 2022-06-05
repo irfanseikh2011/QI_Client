@@ -4,7 +4,7 @@
     height: 100%;
     /* flex: 0.5; */
     max-width: 200px;
-    border-right: 1px solid #ddd;
+    border-right: 1px solid rgb(188, 188, 188);
 }
 
 .sidebar-container {
@@ -50,10 +50,12 @@ a:hover {
     align-content: center;
     padding: 5px 0;
     width: 100%;
+    font-size: 1.2rem;
+    color: #000;
 }
 
 .link-tag:hover {
-    background-color: rgb(98, 155, 155);
+    background: linear-gradient(90deg, rgba(156,38,211,1) 0%, rgba(38,204,211,1) 100%, rgba(20,78,68,1) 100%);
     border-radius: 8px;
 }
 

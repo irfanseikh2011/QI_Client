@@ -76,7 +76,10 @@ const handleSubmit = async (e) => {
                     </div>
                 </div>
             </div>
+            <div className='butt'>
             <button disabled={loading} type='submit' onClick={handleSubmit}   className='button'> {loading ? 'Adding Question':'Add your question'}</button>
+            </div>
+           
         </div>
     </div>
   )

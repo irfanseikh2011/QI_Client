@@ -12,7 +12,8 @@ header {
     width: 100%;
     align-items: center;
     justify-content: space-around;
-    background-color: rgb(98, 155, 155);
+    /* background-color: rgb(219, 235, 235); */
+    background: linear-gradient(90deg, rgba(156,38,211,1) 0%, rgba(38,204,211,1) 100%, rgba(20,78,68,1) 100%);
     box-shadow: 1px 1px 5px rgb(17, 53, 53);
 }
 
@@ -26,6 +27,7 @@ header {
 .header-left > h3{
     cursor: pointer;
     padding: 0.3em;
+    color: black;
 }
 
 .header-left > h3:hover {
@@ -33,34 +35,19 @@ header {
     border-radius: 9px;
 }
 
+.logoName {
+    color: black;
+}
+
+.logoName:hover {
+    color: white;
+}
+
 .header-left img {
     width: 50px;
     margin-right: 0.5em;
     cursor: pointer;
 }
-
-/* .header-middle {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.header-search-container {
-    display: flex;
-    padding: 10px 10px;
-    margin-right: 10px;
-    background-color: #ffff;
-    border-radius: 3px;
-    border: 1px solid rgba(34, 34, 34, 0.233);
-}
-
-.header-search-container > input {
-    border: none;
-    width: 100%;
-    margin-left: 5px;
-    outline: none;
-} */
-
 
 .header-right {
     display: flex;
@@ -74,15 +61,15 @@ header {
 }
 
 .header-right-container > .MuiSvgIcon-root {
-    color: skyblue;
+    color: rgb(38, 38, 38);
     padding: 10px 5px;
     margin: 0px 5px;
     cursor: pointer;
 }
 
 .header-right-container > .MuiSvgIcon-root:hover {
-    color: skyblue;
-    background-color:  rgb(72, 129, 129);
+    color: white;
+    background-color:  rgb(32, 50, 50);
     border-radius: 8px;
 }
 

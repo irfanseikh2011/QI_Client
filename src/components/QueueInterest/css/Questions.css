@@ -3,7 +3,7 @@
     /* flex-direction: column; */
     width: 100%;
     padding: 20px 0px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgb(188, 188, 188);
     width: 100%;
   }
   
@@ -63,8 +63,16 @@
   .question-tags {
       margin: 10px 5px;
       padding: 5px 10px;
-      background-color: rgb(71, 146, 168);
+      background-color: #00bcd1;
       border-radius: 5px;
+      color: rgb(255, 255, 255);
+  }
+
+  .question-title-box {
+    background: linear-gradient(90deg, rgba(239,234,255,1) 16%, rgba(167,235,217,1) 100%, rgba(20,78,68,1) 100%);
+    width: fit-content;
+    border-radius: 8px;
+    padding: 0.2em 0.8em;
   }
   
   .question-answer > p {

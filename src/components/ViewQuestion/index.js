@@ -8,7 +8,7 @@ const index = () => {
   return (
     <div className='stack-index'>
         <div className='stack-index-content'>
-            <Aside/>
+            {/* <Aside/> */}
             <MainQuestion/>
         </div>
     </div>

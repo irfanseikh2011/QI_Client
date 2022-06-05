@@ -32,11 +32,11 @@ function truncate(str,n) {
                 </div>
             </div>
             <div className='question-answer'>
-                <Link to={`/question?q=${question?._id}`}> {ReactHtmlParser(question?.title) }</Link>
+                <Link to={`/question?q=${question?._id}`}><div className='question-title-box'><h3>{ReactHtmlParser(question?.title) }</h3></div> </Link>
                 <div style={{
                     width:"90%"
                 }}>
-                    <div>{ReactHtmlParser(truncate(question?.body,200))}</div>
+                    <div><h5>{ReactHtmlParser(truncate(question?.body,200))}</h5></div>
                 </div>
                 <div style={{display:"flex"
                     }}>

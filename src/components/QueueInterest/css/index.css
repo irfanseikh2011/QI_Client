@@ -1,8 +1,8 @@
 .stack-index {
     display: flex;
-    min-height: 85vh;
+    min-height: 100vh;
     min-width: fit-content;
-   
+    background: #fefefe
 }
 
 
@@ -12,3 +12,9 @@
     justify-content: center;
 }
 
+@media screen and (max-width: 500px) {
+    .aside-container {
+     display: none;
+    }
+  }
+  

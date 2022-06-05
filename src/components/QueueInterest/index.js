@@ -24,7 +24,9 @@ const Index = () => {
   return (
     <div className='stack-index'>
         <div className='stack-index-content'>
+            {/* <div className='aside-container'>
             <Aside/>
+            </div> */}
             <Main questions={questions}/>
         </div>
     </div>
