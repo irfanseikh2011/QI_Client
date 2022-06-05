@@ -242,6 +242,9 @@ button {
     .all-h2 {
       font-size: 0.2rem;
     }
+    .header-search-container{
+      width: 100%;
+    }
   }
 
 

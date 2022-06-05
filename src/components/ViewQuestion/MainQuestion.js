@@ -101,14 +101,21 @@ const MainQuestion = () => {
 
 
   return (
-    <div className='main'>
+    <div className='main main-flex'>
         <div className='main-container'>
-        <div className='link-tag-mobile link-tag'><Link to='/'><QuestionAnswerIcon/>Question Bank</Link></div>
-            <div className='main-top'>
-                <h2 className='main-question question-title-box'>{questionData?.title}</h2>
+            <div className='div-flex'>
+                <div className='link-tag-mobile link-tag '>
+                    <Link to='/'><QuestionAnswerIcon/>Question Bank</Link>
+                </div>
                 <Link to="/add-question">
                     <button className="button-ask">Ask Question</button>
                 </Link>
+            </div>
+        
+                
+            <div className='main-top'>
+                <h2 className='main-question question-title-box'>{questionData?.title}</h2>
+                
             </div>
             <div className='main-desc'>
                 <div className='info'>
@@ -118,7 +125,7 @@ const MainQuestion = () => {
                 </div>
             </div>
             <div className='all-questions'>
-                <div className='all-questions-container'>
+                <div className='all-questions-container question-flex'>
                     <div className='all-questions-left'>
                         <div className='all-options'>
                            <p className='arrow'>▲</p> 
@@ -144,7 +151,7 @@ const MainQuestion = () => {
 
                                 
                             </div>
-                            <p onClick={()=> setShow(!show)}>Add a comment</p>
+                            <div class="comment-button"><p onClick={()=> setShow(!show)}>Add a comment</p></div>
                             {
                                 show && (<div className='title'> 
                                 <textarea value={comment} onChange={(e) => setComment(e.target.value)} type='text' placeholder='Add a comment..'
@@ -197,28 +204,6 @@ const MainQuestion = () => {
                         </div>
                     </div>) )
                 }
-                {/* <div className='all-questions-container'>
-                <div className='all-questions-left'>
-                        <div className='all-options'>
-                           <p className='arrow'>▲</p> 
-                           <p className='arrow'>0</p> 
-                           <p className='arrow'>▼</p> 
-                           <Bookmark/>
-                           <History/>
-                        </div>
-                    </div>
-                    <div className='question-answer'> 
-                        <p>This is question body</p>
-                        <div className='author'>
-                            <small>asked "Timestamp"</small>
-                            <div className='auth-details'>
-                                <Avatar/>
-                                <p>Author Name</p>
-                            </div>
-                        </div>
-                      
-                    </div>
-                </div> */}
             </div>
         </div>
         <div className='main-answer'>
