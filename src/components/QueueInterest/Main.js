@@ -1,18 +1,50 @@
 import { FilterList } from "@mui/icons-material";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Questions from "./Questions";
 import "./css/Main.css";
 import {useSelector } from 'react-redux';
 import {selectUser } from '../../features/userSlice';
+import SearchIcon from '@mui/icons-material/Search';
+import axios from "axios";
+import { async } from "@firebase/util";
+
 
 const Main = ({ questions }) => {
-
   const user = useSelector(selectUser)
+  const [questionsDisplay, setQuestionsDisplay] = React.useState(questions)
+  const [searchValue,setSearchValue] = React.useState("")
 
+  const handleSearch = async () => {
+    if(searchValue!== ""){
+    await axios.get(`https://queue-interest2011.herokuapp.com/api/search?title=${searchValue}`).then((res) => {
+      setQuestionsDisplay(res.data);
+  }).catch((err)=> {
+      console.log("Errorr",err);
+  })
+  }else{
+    setQuestionsDisplay(questions)
+  }
+  }
+
+  useEffect(() => {
+   setQuestionsDisplay(questions)
+  },[questions,searchValue])
+
+   console.log(searchValue)
+   console.log(questionsDisplay)
 
   return (
     <div className="main">
+      <div className="header-middle">
+          <div className="header-search-container">
+            <input onChange={(e) => setSearchValue(e.target.value)} type="text" placeholder="Search.." />
+          </div>
+          <div onClick={handleSearch} className="searchIcon">
+            <SearchIcon />
+            </div>
+        </div> 
+
       {user ? (    <div className="main-container">
         <div className="main-top">
           <h2>All Questions</h2>
@@ -22,7 +54,7 @@ const Main = ({ questions }) => {
         </div>
 
         <div className="main-desc">
-          <p>{questions && questions.length} Questions</p>
+          <p>{questionsDisplay && questionsDisplay.length} Questions</p>
           <div className="main-filter">
             <div className="main-tabs">
               <div className="main-tab">
@@ -43,7 +75,7 @@ const Main = ({ questions }) => {
         </div>
         <div className="questions">
 
-          {questions.map((_q, index) => (
+          {questionsDisplay?.map((_q, index) => (
             <>
               <div className="question" key={index}>
                 <Questions question={_q} />

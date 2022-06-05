@@ -39,7 +39,7 @@ header {
     cursor: pointer;
 }
 
-.header-middle {
+/* .header-middle {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -59,7 +59,7 @@ header {
     width: 100%;
     margin-left: 5px;
     outline: none;
-}
+} */
 
 
 .header-right {
