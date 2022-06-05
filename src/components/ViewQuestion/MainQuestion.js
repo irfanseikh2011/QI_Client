@@ -172,16 +172,16 @@ const MainQuestion = () => {
                     </div>
                 </div>
             </div>
-            <div style={{
-                flexDirection:"column"
-            }} className='all-questions'>
+            <div style={{display:"flex",flexDirection:"column"}} className='all-questions'>
+                <div>
                 <p style={{
                     marginBottom:"20px",
                     fontSize:"1.3rem",
                     fontWeight:"300"
                 }}>{questionData?.answerDetails?.length} Answers</p>
+                </div>
                 {
-                    questionData?.answerDetails?.map((_q) => (<div key={_q?._id} className='all-questions-container'>
+                    questionData?.answerDetails?.map((_q) => (<div key={_q?._id} className='all-answers-container answer-flex'>
                     <div className='all-questions-left'>
                             <div className='all-options'>
                                <p className='arrow'>▲</p> 
