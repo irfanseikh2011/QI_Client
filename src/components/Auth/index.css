@@ -6,6 +6,17 @@
     padding: 30px 0;
     background-color: #eee;
   }
+
+.welcome-message {
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
+.welcome-message p {
+  color: rgb(179, 179, 179);
+  font-size: 0.7rem;
+}
+
   
   .auth-container {
     display: flex;
@@ -53,7 +64,8 @@
   .auth-login {
     display: flex;
     margin: 40px 0;
-    width: 300px;
+    width: 350px;
+    margin-top: 4.5em;
   }
   
   .auth-login-container {
@@ -65,11 +77,16 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
       0 6px 20px 0 rgba(66, 42, 42, 0.19);
     border-radius: 3px;
+    align-items: center;
   }
   
   .input-field {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 1em 1em;
+    width: 100%;
   }
   
   .input-field > p {
@@ -78,10 +95,31 @@
   }
   
   .input-field > input {
-    padding: 10px;
+    padding: 0.5em 1em;
     border: 1px solid #0095ff8e;
     background-color: transparent;
     border-radius: 3px;
     outline: none;
+    margin: 0 1em;
+    width: 100%;
+  }
+
+  .input-field > input:hover {
+    box-shadow: inset 0 0 0 1px rgb(156,38,211);
+  }
+
+  .button-signup {
+    width: 90%;
+  }
+
+  .register-but {
+    margin: 1.2em 0;
+  }
+
+  .welcome-head {
+    color: rgb(69, 66, 66);
   }
   
+  .input-field > .MuiSvgIcon-root {
+    color: rgb(69, 66, 66);
+  }

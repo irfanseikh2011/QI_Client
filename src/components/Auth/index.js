@@ -3,6 +3,9 @@ import React, { useState } from 'react'
 import './index.css'
 import {auth, provider} from "../../firebase"
 import { useHistory } from 'react-router-dom';
+import EmailIcon from '@mui/icons-material/Email';
+import LockIcon from '@mui/icons-material/Lock';
+import PersonIcon from '@mui/icons-material/Person';
 
 
 
@@ -69,51 +72,43 @@ const handleSignIn = (e) => {
   return (
     <div className='auth'>
         <div className='auth-container'>
-            <p>Sign in using any of the following ways..</p>
-            <div className='sign-option'>
-                <div onClick={handleSignInGoogle} className='single-option'>
-                <img
-              alt="google"
-              src="./google.png"
-            />
-                    <p>Login with Google</p>
-                </div>
-            </div>
+            {/* <p>Sign in using any of the following ways..</p> */}
+           
             <div className='auth-login'>
                 <div className='auth-login-container'>
                     {
                         register ? (
                             <>
-                            <div className='input-field'>
-                                <p>Username</p>
-                                <input value={username} onChange={(e) =>setUsername(e.target.value)} type="text"/>
+                             <div className='welcome-message'>
+                                <h3 className='welcome-head'>Create New Account</h3>
+                                <p>Let's get started with Queue Interest.</p>
                             </div>
                             <div className='input-field'>
-                                <p>Email</p>
-                                <input value={email} onChange={(e) =>setEmail(e.target.value)} type="text"/>
+                             <PersonIcon/><input placeholder='Enter your name' value={username} onChange={(e) =>setUsername(e.target.value)} type="text"/>
                             </div>
                             <div className='input-field'>
-                                <p>Password</p>
-                                <input value={password} onChange={(e) =>setPassword(e.target.value)} type="password"/>
+                            <EmailIcon/> <input placeholder='Enter your email' value={email} onChange={(e) =>setEmail(e.target.value)} type="text"/>
                             </div>
-                            <button onClick={handleRegister} 
+                            <div className='input-field'>
+                            <LockIcon /><input placeholder='Enter your password' value={password} onChange={(e) =>setPassword(e.target.value)} type="password"/>
+                            </div>
+                            <button className='button-signup register-but' onClick={handleRegister} 
                             disabled={loading}
-                            style={{
-                                marginTop:"30px",
-                                marginBottom:"10px"
-                            }}>{loading ? "Registering.." : "Register"}</button>
+                            >{loading ? "Registering.." : "Register"}</button>
                             </>
                         ) : (
                             <>
-                            <div className='input-field'>
-                                <p>Email</p>
-                                <input value={email} onChange={(e) =>setEmail(e.target.value)} type="text"/>
+                            <div className='welcome-message'>
+                                <h3 className='welcome-head'>Welcome Back</h3>
+                                <p>Enter your credentials to access your account.</p>
                             </div>
                             <div className='input-field'>
-                                <p>Password</p>
-                                <input value={password} onChange={(e) =>setPassword(e.target.value)} type="password"/>
+                            <EmailIcon/> <input placeholder='Enter your email' value={email} onChange={(e) =>setEmail(e.target.value)} type="text"/>
                             </div>
-                            <button disabled={loading} onClick={handleSignIn} style={{
+                            <div className='input-field'>
+                            <LockIcon />  <input placeholder='Enter your password' value={password} onChange={(e) =>setPassword(e.target.value)} type="password"/>
+                            </div>
+                            <button className='button-signup' disabled={loading} onClick={handleSignIn} style={{
                                 marginTop:"10px",
                                 marginBottom:"10px"
                             }}>{loading ? "Signing in.." : "LogIn"}</button>
@@ -128,6 +123,20 @@ const handleSignIn = (e) => {
                     }}>{register ? "Login":"Register"} ?</p>
                 </div>
             </div>
+
+            <div className='sign-option'>
+                <div onClick={handleSignInGoogle} className='single-option'>
+                <img
+              alt="google"
+              src="./google.png"
+            />
+                    <p>Login with Google</p>
+                </div>
+            </div>
+
+
+
+
             {
                 error !== "" && (<p style={{color:"red",
                 fontSize:"14px"
