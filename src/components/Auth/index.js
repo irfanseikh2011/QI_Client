@@ -76,6 +76,7 @@ const handleSignIn = (e) => {
            
             <div className='auth-login'>
                 <div className='auth-login-container'>
+                    <h1 className='heading-auth'>Queue Interest</h1>
                     {
                         register ? (
                             <>

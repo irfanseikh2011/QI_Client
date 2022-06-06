@@ -2,9 +2,18 @@
     display: flex;
     flex-direction: column;
     /* width: 100vw; */
-    height: 90vh;
+    height: 95vh;
     padding: 30px 0;
-    background-color: #eee;
+    /* background-color: #eee; */
+    background: url('/public/auth-bg.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .heading-auth {
+    color: rgb(14, 90, 203);
+    margin-bottom: 0.4em;
   }
 
 .welcome-message {

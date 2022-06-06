@@ -33,9 +33,9 @@ const history = useHistory()
         <div className="header-right">
         <div className="header-right-container">
           <span><Avatar src={user?.photo}/></span>
-          <LogoutIcon onClick={()=> {auth.signOut() 
+          <LogoutIcon titleAccess="Logout" onClick={()=> {auth.signOut() 
           history.push('/auth')}}/>
-          <MailIcon/>
+          <Link to='/mail'><div className="mailbox">{user ? <MailIcon titleAccess="Mail"/> : <></>}</div></Link>
         </div>
         </div>
       </div>

@@ -58,6 +58,26 @@ header {
     display: flex;
     align-items: center;
     padding: 5px 10px;
+    align-items: center;
+}
+
+.mailbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mailbox > .MuiSvgIcon-root {
+    color: rgb(38, 38, 38);
+    padding: 10px 5px;
+    margin: 0px 5px;
+    cursor: pointer;
+}
+
+.mailbox > .MuiSvgIcon-root:hover {
+    color: white;
+    background-color:  rgb(32, 50, 50);
+    border-radius: 8px;
 }
 
 .header-right-container > .MuiSvgIcon-root {

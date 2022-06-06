@@ -19,6 +19,7 @@ import { auth } from './firebase';
 
 import React from 'react';
 import { Buffer } from 'buffer';
+import Mail from './components/Mail/Mail';
 global.Buffer = Buffer;
 
 
@@ -62,13 +63,13 @@ const PrivateRoute = ({component: Component, ...rest}) => (
   return (
     <div className="App">
       <Router>
-        <Header/>
+        {user?<Header/>:<></>}
         <Switch>
         <Route exact path={user ? '/' : '/auth'} component={user ? QueueInterest :  Auth}/>  
         <PrivateRoute exact path='/add-question' component={Question}/>
         <PrivateRoute exact path='/question' component= {ViewQuestion} />
         <PrivateRoute exact path='/' component= {QueueInterest} />
-          
+        <Route exact path='/mail' component={Mail} />
         </Switch>
       </Router>
     </div>
