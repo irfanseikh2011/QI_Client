@@ -55,7 +55,7 @@ function truncate(str,n) {
                     <small>{new Date(question.created_at).toLocaleString()}</small>
                     <div className='author-details'>
                         <Avatar src={question?.user?.photo}/>
-                        <p>{question?.user?.displayName ? question?.user?.displayName : String(question?.user?.email).split('@')[0] ? "Anonymous" : ""}</p>
+                        <p>{question?.user?.displayName ? question?.user?.displayName : String(question?.user?.email).split('@')[0] }</p>
                     </div>
                 </div>
             </div>

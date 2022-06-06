@@ -141,13 +141,13 @@ const MainQuestion = () => {
                             <small>asked at {new Date(questionData?.created_at).toLocaleString()}</small>
                             <div className='auth-details'>
                                 <Avatar src={questionData?.user?.photo}/>
-                                <p>{questionData?.user?.displayName ? questionData?.user?.displayName : String(questionData?.user?.email).split('@')[0] ? "Anonymous" : ""}</p>
+                                <p>{questionData?.user?.displayName ? questionData?.user?.displayName : String(questionData?.user?.email).split('@')[0]}</p>
                             </div>
                         </div>
                         <div className='comments'>
                             <div className='comment'>
 
-                            {questionData?.comments && questionData?.comments?.map((_qd) => <p>{_qd?.comment}- <span>{_qd?.user?.displayName ? _qd?.user?.displayName : String(_qd?.user?.email).split('@')[0] ? "Anonymous" : ""}</span><small>{new Date(_qd?.created_at).toLocaleString()}</small></p>)}
+                            {questionData?.comments && questionData?.comments?.map((_qd) => <p>{_qd?.comment}- <span>{_qd?.user?.displayName ? _qd?.user?.displayName : String(_qd?.user?.email).split('@')[0]}</span><small>{new Date(_qd?.created_at).toLocaleString()}</small></p>)}
 
                                 
                             </div>
@@ -197,7 +197,7 @@ const MainQuestion = () => {
                                 <small>at  {new Date(_q?.created_at).toLocaleString()}</small>
                                 <div className='auth-details'>
                                     <Avatar src={_q?.user?.photo}/>
-                                    <p>{_q?.user?.displayName ? _q?.user?.displayName : String(_q?.user?.email).split('@')[0] ? "Anonymous" : ""}</p>
+                                    <p>{_q?.user?.displayName ? _q?.user?.displayName : String(_q?.user?.email).split('@')[0] }</p>
                                 </div>
                             </div>
                           
