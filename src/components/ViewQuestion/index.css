@@ -27,7 +27,12 @@
   
   .arrow {
     font-size: 2rem;
-    color: rgba(0, 0, 0, 0.25);
+    color: #14BDBD;
+    cursor: pointer;
+  }
+
+  .arrow-button:hover {
+    color: #117c7c;
   }
   
   .all-options > .MuiSvgIcon-root {

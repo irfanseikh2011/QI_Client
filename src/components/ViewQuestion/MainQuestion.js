@@ -1,4 +1,3 @@
-import { Bookmark, History } from '@mui/icons-material'
 import { Avatar } from '@mui/material'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
@@ -16,6 +15,7 @@ const MainQuestion = () => {
     const [show,setShow] = useState(false);
     const [answer,setAnswer] = useState("");
     const [comment,setComment] = useState("");
+    const [questionVote, setQuestionVote] = useState(0);
 
 
     const handleQuill = (value) => {
@@ -30,6 +30,14 @@ const MainQuestion = () => {
         }).catch((err)=> {
             console.log("Errorr",err);
         })
+    }
+
+    const handleDisLike = () => {
+        setQuestionVote((prev) => prev ? (prev-1) : 0)
+    }
+
+    const handleLike = () => {
+        setQuestionVote((prev) => prev + 1 )
     }
 
     
@@ -97,7 +105,7 @@ const MainQuestion = () => {
 
     }
 
-
+    console.log(questionData);
 
 
   return (
@@ -111,33 +119,24 @@ const MainQuestion = () => {
                     <button className="button-ask">Ask Question</button>
                 </Link>
             </div>
-        
-                
             <div className='main-top'>
                 <h2 className='main-question question-title-box'>{questionData?.title}</h2>
                 
             </div>
             <div className='main-desc'>
-                <div className='info'>
-                    <p>{new Date(questionData?.created_at).toLocaleString()}</p>
-                    <p>Active <span>today</span></p>
-                    <p>Viewed <span>11 times</span></p>
-                </div>
             </div>
             <div className='all-questions'>
                 <div className='all-questions-container question-flex'>
                     <div className='all-questions-left'>
                         <div className='all-options'>
-                           <p className='arrow'>▲</p> 
-                           <p className='arrow'>0</p> 
-                           <p className='arrow'>▼</p> 
-                           <Bookmark/>
-                           <History/>
+                           <p onClick={handleLike} className='arrow arrow-button'>▲</p> 
+                           <p className='arrow'>{questionVote}</p> 
+                           <p onClick={handleDisLike} className='arrow arrow-button'>▼</p> 
                         </div>
                     </div>
                     <div className='question-answer'> 
                         <h5 className='question-body'>{ReactHtmlParser(questionData?.body)}</h5>
-                        <div className='author'>
+                        <div style={{marginTop:"1em"}} className='author'>
                             <small>asked at {new Date(questionData?.created_at).toLocaleString()}</small>
                             <div className='auth-details'>
                                 <Avatar src={questionData?.user?.photo}/>
@@ -184,23 +183,20 @@ const MainQuestion = () => {
                     questionData?.answerDetails?.map((_q) => (<div key={_q?._id} className='all-answers-container answer-flex'>
                     <div className='all-questions-left'>
                             <div className='all-options'>
-                               <p className='arrow'>▲</p> 
-                               <p className='arrow'>0</p> 
-                               <p className='arrow'>▼</p> 
-                               <Bookmark/>
-                               <History/>
+                               <p className='arrow arrow-button'>▲</p> 
+                               <p className='arrow'></p> 
+                               <p className='arrow arrow-button'>▼</p> 
                             </div>
                         </div>
                         <div className='question-answer'> 
                             <h5 className='answer-body'>{ReactHtmlParser(_q?.answer)}</h5>
-                            <div className='author'>
+                            <div style={{marginTop:"1em"}} className='author'>
                                 <small>at  {new Date(_q?.created_at).toLocaleString()}</small>
                                 <div className='auth-details'>
                                     <Avatar src={_q?.user?.photo}/>
                                     <p>{_q?.user?.displayName ? _q?.user?.displayName : String(_q?.user?.email).split('@')[0] }</p>
                                 </div>
                             </div>
-                          
                         </div>
                     </div>) )
                 }

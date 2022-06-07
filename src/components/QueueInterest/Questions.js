@@ -10,6 +10,8 @@ const tags = JSON.parse(question?.tags[0]);
 function truncate(str,n) {
     return str?.length > n ? str.substr(0,n-1) + "..." : str
 }
+
+console.log(question)
 // const tags = []
 
   return (
@@ -18,16 +20,12 @@ function truncate(str,n) {
             <div className='all-questions-left'>
                 <div className='all-options'>
                     <div className='all-option'>
-                        <p>0</p>
+                        <p>{question.votes}</p>
                         <span>Votes</span>
                     </div>
                     <div className='all-option'>
                         <p>{question?.answerDetails?.length}</p>
                         <span>Answers</span>
-                    </div>
-                    <div className='all-option'>
-                        <p>0</p>
-                        <small>0 Views</small>
                     </div>
                 </div>
             </div>
