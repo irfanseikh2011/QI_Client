@@ -37,6 +37,14 @@ const Main = ({ questions }) => {
    setQuestionsDisplay(questions)
   },[questions,searchValue,])
 
+
+  const handleKeyPress = (event) => {
+    if(event.key === 'Enter'){
+      handleSearch()
+    }
+  }
+
+
   //  console.log(searchValue)
    console.log(questionsDisplay)
    console.log(questions)
@@ -45,7 +53,7 @@ const Main = ({ questions }) => {
     <div className="main">
       <div className="header-middle">
           <div className="header-search-container">
-            <input value={searchValue} onChange={(e) => setSearchValue(e.target.value)} type="text" placeholder="Search.." />
+            <input onKeyDown={handleKeyPress}  value={searchValue} onChange={(e) => setSearchValue(e.target.value)} type="text" placeholder="Search.." />
           </div>
           <div onClick={handleSearch} className="searchIcon">
             <SearchIcon />

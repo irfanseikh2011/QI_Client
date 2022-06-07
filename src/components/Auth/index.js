@@ -13,6 +13,8 @@ function Index() {
  const [register,setRegister] = useState(false);
 const [email,setEmail] = useState("")
 const [password,setPassword] = useState("")
+const [confirmPassword, setConfirmPassword] = useState("")
+const [passwordTrue,setPasswordTrue] = useState(true)
 const [username,setUsername] = useState("")
 const [loading,setLoading] = useState(false)
 const [error,setError] = useState("")
@@ -32,11 +34,16 @@ const handleRegister = (e) => {
     setError("")
     setLoading(true)
     if(email===""||password===""||username===""){
-        setError("Required field is missing")
+        setError("Required field is missing.")
+        setLoading(false)
+    }else if(password!==confirmPassword){
+        setError("Both the passwords did not match.")
+        setPasswordTrue(false)
         setLoading(false)
     }else {
         createUserWithEmailAndPassword(auth,email,password).then((res)=> {
             setLoading(false)
+            setPasswordTrue(true)
             history.push('/')
             console.log(res)
         }).catch((error) => {
@@ -73,7 +80,13 @@ const handleSignIn = (e) => {
     <div className='auth'>
         <div className='auth-container'>
             {/* <p>Sign in using any of the following ways..</p> */}
-           
+            {
+                error !== "" && (<p style={{color:"red",
+                fontSize:"14px",backgroundColor:"white",marginTop:"1em",marginBottom:"-3em",padding:"0.2em 0.8em",borderRadius:"5px"
+                }}>
+                {error}
+                </p>)
+            }
             <div className='auth-login'>
                 <div className='auth-login-container'>
                     <h1 className='heading-auth'>Queue Interest</h1>
@@ -90,8 +103,11 @@ const handleSignIn = (e) => {
                             <div className='input-field'>
                             <EmailIcon/> <input placeholder='Enter your email' value={email} onChange={(e) =>setEmail(e.target.value)} type="text"/>
                             </div>
-                            <div className='input-field'>
+                            <div className={passwordTrue?'input-field ': 'input-field password-border'}>
                             <LockIcon /><input placeholder='Enter your password' value={password} onChange={(e) =>setPassword(e.target.value)} type="password"/>
+                            </div>
+                            <div className={passwordTrue?'input-field ': 'input-field password-border'}>
+                            <LockIcon /><input placeholder='Confirm your password' value={confirmPassword} onChange={(e) =>setConfirmPassword(e.target.value)} type="password"/>
                             </div>
                             <button className='button-signup register-but' onClick={handleRegister} 
                             disabled={loading}
@@ -136,15 +152,6 @@ const handleSignIn = (e) => {
             </div>
 
 
-
-
-            {
-                error !== "" && (<p style={{color:"red",
-                fontSize:"14px"
-                }}>
-                {error}
-                </p>)
-            }
         </div>
     </div>
   )
