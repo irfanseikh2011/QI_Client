@@ -34,6 +34,20 @@
   .arrow-button:hover {
     color: #117c7c;
   }
+
+  .answerDelButton{
+    margin-bottom: 1em;
+    width: 60%;
+    background-color: red;
+  }
+
+  .answerDelButton:hover{
+    background-color: rgb(163, 7, 7);
+  }
+
+  .dispNone {
+    display: none;
+  }
   
   .all-options > .MuiSvgIcon-root {
     color: rgba(0, 0, 0, 0.25);

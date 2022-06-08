@@ -291,6 +291,30 @@ const MainQuestion = () => {
       getQuestionDetails();
   };
 
+  console.log(questionData)
+
+
+  const handleDelete = async (q) => {
+    await axios({
+        method: "DELETE",
+        url: `https://queue-interest2011.herokuapp.com/api/answer/deleteanswer?q=${q._id}`,
+        timeout: 3000,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: userData,
+      })
+        .then((data) => {
+          console.log(data);
+          console.log("question deleted");
+        })
+        .catch((err) => console.log(err));
+
+        getQuestionDetails();
+    }
+
+
+
   return (
     <div className="main main-flex">
       <div className="main-container">
@@ -429,6 +453,7 @@ const MainQuestion = () => {
                 <h5 className="answer-body">{ReactHtmlParser(_q?.answer)}</h5>
                 <div style={{ marginTop: "1em" }} className="author">
                   <small>at {new Date(_q?.created_at).toLocaleString()}</small>
+                  <button onClick={()=> handleDelete(_q)} className={_q.user.uid === user.uid ? "answerDelButton" : "dispNone"}>Delete</button>
                   <div className="auth-details">
                     <Avatar src={_q?.user?.photo} />
                     <p>
