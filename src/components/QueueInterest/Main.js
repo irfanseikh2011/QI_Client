@@ -46,8 +46,8 @@ const Main = ({ questions }) => {
 
 
   //  console.log(searchValue)
-   console.log(questionsDisplay)
-   console.log(questions)
+  //  console.log(questionsDisplay)
+  //  console.log(questions)
 
   return (
     <div className="main">

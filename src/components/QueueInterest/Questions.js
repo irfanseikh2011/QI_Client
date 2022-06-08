@@ -20,7 +20,7 @@ console.log(question)
             <div className='all-questions-left'>
                 <div className='all-options'>
                     <div className='all-option'>
-                        <p>{question.votes}</p>
+                        <p>{question?.liked_by?.length - question?.disliked_by?.length}</p>
                         <span>Votes</span>
                     </div>
                     <div className='all-option'>
