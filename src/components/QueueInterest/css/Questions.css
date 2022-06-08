@@ -155,3 +155,10 @@
     color: #0151f0a2;
   }
   
+
+
+  @media screen and (max-width:500px) {
+    .deleteButton {
+      width: 30%;
+    }
+  }
