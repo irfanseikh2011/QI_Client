@@ -91,7 +91,7 @@ const MainQuestion = () => {
         });
     }
     getQuestionDetails();
-  }, [id]);
+  }, [id],[questionData]);
 
   const handleComment = async () => {
     if (comment !== "") {
@@ -123,8 +123,40 @@ const MainQuestion = () => {
   const [disLikeButtonPress, setDisLikeButtonPress] = useState(false);
   const userData = { user: user };
 
+
+  async function getQuestionDetails() {
+    await axios
+      .get(`https://queue-interest2011.herokuapp.com/api/question/${id}`)
+      .then((res) => {
+        console.log(res.data[0]);
+        setQuestionData(res.data[0]);
+      })
+      .catch((err) => {
+        console.log("Errorr", err);
+      });
+  }
+
+
+
   const handleLikeButton = async () => {
-    if (!likeButtonPress) {
+
+    await axios({
+        method: "PUT",
+        url: `https://queue-interest2011.herokuapp.com/api/question/subdislike?q=${id}`,
+        timeout: 3000,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: userData,
+      })
+        .then((data) => {
+          console.log(data);
+          console.log("votes deleted");
+          setLikeButtonPress(false);
+        })
+        .catch((err) => console.log(err));
+
+
       await axios({
         method: "PUT",
         url: `https://queue-interest2011.herokuapp.com/api/question/addvote?q=${id}`,
@@ -140,8 +172,10 @@ const MainQuestion = () => {
           setLikeButtonPress(true);
         })
         .catch((err) => console.log(err));
+
+
+        getQuestionDetails();
     }
-  };
 
   const handleDisLikeButton = async () => {
       await axios({
@@ -175,69 +209,87 @@ const MainQuestion = () => {
         setDisLikeButtonPress(true);
       })
       .catch((err) => console.log(err));
+
+
+      getQuestionDetails();
   };
 
-//   const [likeButtonAnswerPress, setLikeButtonAnswerPress] = useState(false);
-//   const [currAnswer, setCurrAnswer] = useState();
 
-//   // console.log(currAnswer);
 
-//   const handleLikeAnswerButton = async (_q) => {
-//     const id = _q._id;
-//     console.log(id);
-//     if (!likeButtonAnswerPress) {
-//       await axios({
-//         method: "PUT",
-//         url: `https://queue-interest2011.herokuapp.com/api/answer/addvote?q=${_q._id}`,
-//         timeout: 3000,
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         data: userData,
-//       })
-//         .then((data) => {
-//           console.log(data);
-//           console.log("updated votes");
-//           setLikeButtonPress(true);
-//         })
-//         .catch((err) => console.log(err));
-//     }
-//   };
+  // console.log(currAnswer);
 
-//   const handleDisLikeAnswerButton = async () => {
-//     if (likeButtonAnswerPress) {
-//       await axios({
-//         method: "PUT",
-//         url: `https://queue-interest2011.herokuapp.com/api/answer/subvote?q=${id}`,
-//         timeout: 3000,
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         data: userData,
-//       })
-//         .then((data) => {
-//           console.log(data);
-//           console.log("votes deleted");
-//           setLikeButtonPress(false);
-//         })
-//         .catch((err) => console.log(err));
-//     }
+  const handleLikeAnswerButton = async (_q) => {
 
-//     await axios({
-//       method: "PUT",
-//       url: `https://queue-interest2011.herokuapp.com/api/answer/adddislike?q=${id}`,
-//       timeout: 3000,
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       data: userData,
-//     })
-//       .then((data) => {
-//         console.log(data);
-//         console.log("updated dislikes");
-//       })
-//       .catch((err) => console.log(err));
-//   };
+    await axios({
+        method: "PUT",
+        url: `https://queue-interest2011.herokuapp.com/api/answer/subdislike?q=${_q._id}`,
+        timeout: 3000,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: userData,
+      })
+        .then((data) => {
+          console.log(data);
+          console.log("votes deleted");
+          setLikeButtonPress(false);
+        })
+        .catch((err) => console.log(err));
+
+      await axios({
+        method: "PUT",
+        url: `https://queue-interest2011.herokuapp.com/api/answer/addvote?q=${_q._id}`,
+        timeout: 3000,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: userData,
+      })
+        .then((data) => {
+          console.log(data);
+          console.log("updated votes");
+          setLikeButtonPress(true);
+        })
+        .catch((err) => console.log(err));
+
+        getQuestionDetails();
+
+  };
+
+  const handleDisLikeAnswerButton = async (_q) => {
+      await axios({
+        method: "PUT",
+        url: `https://queue-interest2011.herokuapp.com/api/answer/subvote?q=${_q._id}`,
+        timeout: 3000,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: userData,
+      })
+        .then((data) => {
+          console.log(data);
+          console.log("votes deleted");
+          setLikeButtonPress(false);
+        })
+        .catch((err) => console.log(err));
+
+    await axios({
+      method: "PUT",
+      url: `https://queue-interest2011.herokuapp.com/api/answer/adddislike?q=${_q._id}`,
+      timeout: 3000,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: userData,
+    })
+      .then((data) => {
+        console.log(data);
+        console.log("updated dislikes");
+      })
+      .catch((err) => console.log(err));
+
+      getQuestionDetails();
+  };
 
   return (
     <div className="main main-flex">
@@ -357,7 +409,7 @@ const MainQuestion = () => {
               <div className="all-questions-left">
                 <div className="all-options">
                   <p
-                   
+                   onClick={()=>handleLikeAnswerButton(_q)}
                     className="arrow arrow-button"
                   >
                     ▲
@@ -366,7 +418,7 @@ const MainQuestion = () => {
                     {_q?.liked_by?.length - _q?.disliked_by?.length}
                   </p>
                   <p
-                    
+                    onClick={()=> handleDisLikeAnswerButton(_q)}
                     className="arrow arrow-button"
                   >
                     ▼
