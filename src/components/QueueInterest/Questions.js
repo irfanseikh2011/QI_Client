@@ -1,8 +1,11 @@
 import { Avatar } from '@mui/material'
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import './css/Questions.css'
 import ReactHtmlParser from 'react-html-parser'
+import userSlice, { selectUser } from "../../features/userSlice";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 function Questions({question}) {
 // console.log(question?.tags[0])
@@ -10,6 +13,54 @@ const tags = JSON.parse(question?.tags[0]);
 function truncate(str,n) {
     return str?.length > n ? str.substr(0,n-1) + "..." : str
 }
+
+const user = useSelector(selectUser);
+
+const userData = { user: user };
+
+useEffect(() => {
+    const handleDelete = async (q) => {
+        await axios({
+            method: "DELETE",
+            url: `https://queue-interest2011.herokuapp.com/api/question/deletequestion?q=${q._id}`,
+            timeout: 3000,
+            headers: {
+              "Content-Type": "application/json",
+            },
+            data: userData,
+          })
+            .then((data) => {
+              console.log(data);
+              console.log("question deleted");
+            })
+            .catch((err) => console.log(err));
+        }
+
+
+    handleDelete()
+  }, [question]);
+
+
+
+
+const handleDelete = async (q) => {
+
+    await axios({
+        method: "DELETE",
+        url: `https://queue-interest2011.herokuapp.com/api/question/deletequestion?q=${q._id}`,
+        timeout: 3000,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: userData,
+      })
+        .then((data) => {
+          console.log(data);
+          console.log("question deleted");
+        })
+        .catch((err) => console.log(err));
+    }
+
 
 console.log(question)
 // const tags = []
@@ -48,6 +99,8 @@ console.log(question)
                     }
 
                     </div>
+
+                    <button onClick={()=> handleDelete(question)} className={question.user.uid===user.uid ? "deleteButton" : "deleteDispNone"}>Delete</button>
 
                 <div className='author'>
                     <small>{new Date(question.created_at).toLocaleString()}</small>
