@@ -143,41 +143,39 @@ const MainQuestion = () => {
     }
   };
 
-//   const handleDisLikeButton = async () => {
-//     if (likeButtonPress) {
-//       await axios({
-//         method: "PUT",
-//         url: `https://queue-interest2011.herokuapp.com/api/question/subvote?q=${id}`,
-//         timeout: 3000,
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         data: userData,
-//       })
-//         .then((data) => {
-//           console.log(data);
-//           console.log("votes deleted");
-//         })
-//         .catch((err) => console.log(err));
-//     }
+  const handleDisLikeButton = async () => {
+      await axios({
+        method: "PUT",
+        url: `https://queue-interest2011.herokuapp.com/api/question/subvote?q=${id}`,
+        timeout: 3000,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: userData,
+      })
+        .then((data) => {
+          console.log(data);
+          console.log("votes deleted");
+          setLikeButtonPress(false);
+        })
+        .catch((err) => console.log(err));
 
-//     await axios({
-//       method: "PUT",
-//       url: `https://queue-interest2011.herokuapp.com/api/question/adddislike?q=${id}`,
-//       timeout: 3000,
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       data: userData,
-//     })
-//       .then((data) => {
-//         console.log(data);
-//         console.log("updated dislikes");
-//         setDisLikeButtonPress(true);
-//         setLikeButtonPress(false);
-//       })
-//       .catch((err) => console.log(err));
-//   };
+    await axios({
+      method: "PUT",
+      url: `https://queue-interest2011.herokuapp.com/api/question/adddislike?q=${id}`,
+      timeout: 3000,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: userData,
+    })
+      .then((data) => {
+        console.log(data);
+        console.log("updated dislikes");
+        setDisLikeButtonPress(true);
+      })
+      .catch((err) => console.log(err));
+  };
 
 //   const [likeButtonAnswerPress, setLikeButtonAnswerPress] = useState(false);
 //   const [currAnswer, setCurrAnswer] = useState();
@@ -272,7 +270,7 @@ const MainQuestion = () => {
                   {questionData?.liked_by?.length -
                     questionData?.disliked_by?.length}
                 </p>
-                <p  className="arrow arrow-button">
+                <p onClick={handleDisLikeButton}  className="arrow arrow-button">
                   ▼
                 </p>
               </div>
