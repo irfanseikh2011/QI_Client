@@ -221,6 +221,31 @@ button {
   .hello-world {
     background : url(https://images.pexels.com/photos/208494/pexels-photo-208494.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)
   }
+
+  .filter-options {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+  }
+
+  .filter-option > p {
+    margin: 10px 5px;
+    padding: 5px 10px;
+    background-color: #00bcd1;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    width: fit-content;
+  }
+
+  .filter-option > p:hover {
+    background-color: #0e8c9a;
+  }
+
+  .dispNoneFilter {
+    display: none;
+  }
+
   
   @media screen and (min-width: 768px) {
     .main {
@@ -245,6 +270,13 @@ button {
     .header-search-container{
       width: 100%;
     }
+
+    .filter-option > p {
+      font-size: 0.8rem;
+    }
+
+
+
   }
 
 

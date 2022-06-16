@@ -1,5 +1,5 @@
 import { Avatar } from '@mui/material'
-import React, {useEffect} from 'react'
+import React, {useEffect,useState,useCallback} from 'react'
 import { Link } from 'react-router-dom'
 import './css/Questions.css'
 import ReactHtmlParser from 'react-html-parser'
@@ -15,32 +15,7 @@ function truncate(str,n) {
 }
 
 const user = useSelector(selectUser);
-
 const userData = { user: user };
-
-useEffect(() => {
-    const handleDelete = async (q) => {
-        await axios({
-            method: "DELETE",
-            url: `https://queue-interest2011.herokuapp.com/api/question/deletequestion?q=${q._id}`,
-            timeout: 3000,
-            headers: {
-              "Content-Type": "application/json",
-            },
-            data: userData,
-          })
-            .then((data) => {
-              console.log(data);
-              console.log("question deleted");
-            })
-            .catch((err) => console.log(err));
-        }
-
-
-    handleDelete()
-  }, [question]);
-
-
 
 
 const handleDelete = async (q) => {
@@ -61,9 +36,6 @@ const handleDelete = async (q) => {
         .catch((err) => console.log(err));
     }
 
-
-console.log(question)
-// const tags = []
 
   return (
     <div className='all-questions'>

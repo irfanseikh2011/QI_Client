@@ -43,3 +43,9 @@
 *{
   font-family: 'Poppins', sans-serif;
 }
+
+
+.mail-container {
+  display: flex;
+  justify-content: center;
+}

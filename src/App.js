@@ -69,7 +69,9 @@ const PrivateRoute = ({component: Component, ...rest}) => (
         <PrivateRoute exact path='/add-question' component={Question}/>
         <PrivateRoute exact path='/question' component= {ViewQuestion} />
         <PrivateRoute exact path='/' component= {QueueInterest} />
-        <Route exact path='/mail' component={Mail} />
+        <div className='mail-container'>
+          <Route exact path='/mail' component={Mail} />
+        </div>
         </Switch>
       </Router>
     </div>

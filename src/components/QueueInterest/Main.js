@@ -1,5 +1,5 @@
 import { FilterList } from "@mui/icons-material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Questions from "./Questions";
 import "./css/Main.css";
@@ -35,6 +35,7 @@ const Main = ({ questions }) => {
 
   useEffect(() => {
    setQuestionsDisplay(questions)
+   console.log(questionsDisplay)
   },[questions,searchValue,])
 
 
@@ -42,6 +43,24 @@ const Main = ({ questions }) => {
     if(event.key === 'Enter'){
       handleSearch()
     }
+  }
+
+  const [pressFilter,setPressFilter] = useState(false);
+
+  const handleFilter = () => {
+    setPressFilter(true);
+  }
+
+  const handleFilterOption = async (e) => {
+    const tag = e.target.innerText;
+    await axios.get(`https://queue-interest2011.herokuapp.com/api/filter?tag=${tag}`).then((res) => {
+      setQuestionsDisplay(res.data);
+    }).catch((err)=> {
+      console.log("Errorr",err);
+    })
+
+    setPressFilter(false)
+    
   }
 
 
@@ -86,12 +105,30 @@ const Main = ({ questions }) => {
                 <Link to="/">More</Link>
               </div> */}
             </div>
-            <div className="main-filter-item">
+            <div onClick={handleFilter} className={pressFilter? "dispNoneFilter" : "main-filter-item"}>
               <FilterList />
               <p>Filter</p>
             </div>
           </div>
         </div>
+        {pressFilter ?<div className="filter-options">
+          <div className="filter-option">
+              <p onClick={(e)=>handleFilterOption(e)}>python</p>
+              <p onClick={(e)=>handleFilterOption(e)}>javascript</p>
+          </div>
+          <div className="filter-option">
+              <p onClick={(e)=>handleFilterOption(e)}>react</p>
+              <p onClick={(e)=>handleFilterOption(e)}>wpf</p>
+          </div>
+          <div className="filter-option">
+              <p onClick={(e)=>handleFilterOption(e)}>datastructures</p>
+              <p onClick={(e)=>handleFilterOption(e)}>django</p>
+          </div>
+          <div className="filter-option">
+              <p onClick={(e)=>handleFilterOption(e)}>mongoose</p>
+              <p onClick={(e)=>handleFilterOption(e)}>express</p>
+          </div>
+              </div> : ""}
         <div className="questions">
 
           {questionsDisplay?.map((_q, index) => (
