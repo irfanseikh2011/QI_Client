@@ -35,7 +35,7 @@ const handleSubmit = async (e) => {
             user:user
         }
 
-        await axios.post('https://queue-interest2011.herokuapp.com/api/question', bodyJSON).then((res) => {
+        await axios.post('http://localhost:4000/api/question', bodyJSON).then((res) => {
             alert('Question added successfully')
             setLoading(false)
             history.push('/')

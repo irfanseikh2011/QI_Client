@@ -9,6 +9,11 @@
     font-size: small;
   }
 
+  .like_but:hover{
+    color: #0f9292;
+    cursor: pointer;
+  }
+
   .div-flex {
     display: flex;
     justify-content: space-between;

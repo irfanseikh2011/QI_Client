@@ -7,7 +7,7 @@ import userSlice, { selectUser } from "../../features/userSlice";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-function Questions({question}) {
+function Questions({question,stateChange}) {
 // console.log(question?.tags[0])
 const tags = JSON.parse(question?.tags[0]);
 function truncate(str,n) {
@@ -17,12 +17,23 @@ function truncate(str,n) {
 const user = useSelector(selectUser);
 const userData = { user: user };
 
+// const [questionData, setQuestionData] = useState(question);
+
+
+
+// useEffect(() => {
+//     console.log("Refresh");
+// },[question])
+
+
+// console.log(userData)
+
 
 const handleDelete = async (q) => {
-
+    console.log(q._id);
     await axios({
-        method: "DELETE",
-        url: `https://queue-interest2011.herokuapp.com/api/question/deletequestion?q=${q._id}`,
+        method: "PUT",
+        url: `http://localhost:4000/api/question/delete/${q._id}`,
         timeout: 3000,
         headers: {
           "Content-Type": "application/json",
@@ -32,6 +43,8 @@ const handleDelete = async (q) => {
         .then((data) => {
           console.log(data);
           console.log("question deleted");
+          stateChange(data.data.data)
+          window.alert("Question deleted");
         })
         .catch((err) => console.log(err));
     }
@@ -43,7 +56,7 @@ const handleDelete = async (q) => {
             <div className='all-questions-left'>
                 <div className='all-options'>
                     <div className='all-option'>
-                        <p>{question?.liked_by?.length - question?.disliked_by?.length}</p>
+                        <p>{question?.liked_by?.length}</p>
                         <span>Votes</span>
                     </div>
                     <div className='all-option'>

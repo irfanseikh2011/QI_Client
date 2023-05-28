@@ -6,18 +6,17 @@ import Main from './Main'
 
 
 const Index = () => {
-  const [questions, setQuestions] = React.useState([]);
+  const [questions, setQuestions] = React.useState();
+
+  async function getQuestion() {
+    await axios.get('http://localhost:4000/api/question').then((res) => {
+      console.log(res.data)
+      setQuestions(() => res.data.reverse())
+    })
+  }
 
   React.useEffect(()=> {
-    async function getQuestion() {
-      await axios.get('https://queue-interest2011.herokuapp.com/api/question').then((res) => {
-        console.log(res.data)
-        setQuestions(res.data.reverse())
-      })
-    }
-
     getQuestion()
-
   },[])
 
 

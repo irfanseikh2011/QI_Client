@@ -18,7 +18,7 @@ const Main = ({ questions }) => {
 
   const handleSearch = async () => {
     if(searchValue!== ""){
-    await axios.get(`https://queue-interest2011.herokuapp.com/api/search?title=${searchValue}`).then((res) => {
+    await axios.get(`http://localhost:4000/api/search?title=${searchValue}`).then((res) => {
       setQuestionsDisplay(res.data);
   }).catch((err)=> {
       console.log("Errorr",err);
@@ -36,7 +36,7 @@ const Main = ({ questions }) => {
   useEffect(() => {
    setQuestionsDisplay(questions)
    console.log(questionsDisplay)
-  },[questions,searchValue,])
+  },[questions,searchValue])
 
 
   const handleKeyPress = (event) => {
@@ -53,7 +53,7 @@ const Main = ({ questions }) => {
 
   const handleFilterOption = async (e) => {
     const tag = e.target.innerText;
-    await axios.get(`https://queue-interest2011.herokuapp.com/api/filter?tag=${tag}`).then((res) => {
+    await axios.get(`http://localhost:4000/api/filter?tag=${tag}`).then((res) => {
       setQuestionsDisplay(res.data);
     }).catch((err)=> {
       console.log("Errorr",err);
@@ -61,6 +61,11 @@ const Main = ({ questions }) => {
 
     setPressFilter(false)
     
+  }
+
+
+  const handleStateChange = (question) => {
+    setQuestionsDisplay(question);
   }
 
 
@@ -134,7 +139,7 @@ const Main = ({ questions }) => {
           {questionsDisplay?.map((_q, index) => (
             <>
               <div className="question" key={index}>
-                <Questions question={_q} />
+                <Questions stateChange={handleStateChange} question={_q} />
               </div>
             </>
           ))}
