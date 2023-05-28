@@ -18,7 +18,7 @@ const Main = ({ questions }) => {
 
   const handleSearch = async () => {
     if(searchValue!== ""){
-    await axios.get(`http://localhost:4000/api/search?title=${searchValue}`).then((res) => {
+    await axios.get(`http://localhost:4000/api/question/questions/search?title=${searchValue}`).then((res) => {
       setQuestionsDisplay(res.data);
   }).catch((err)=> {
       console.log("Errorr",err);
