@@ -33,7 +33,7 @@ const handleDelete = async (q) => {
     console.log(q._id);
     await axios({
         method: "PUT",
-        url: `http://localhost:4000/api/question/delete/${q._id}`,
+        url: `https://queue-interest.onrender.com/api/question/delete/${q._id}`,
         timeout: 3000,
         headers: {
           "Content-Type": "application/json",

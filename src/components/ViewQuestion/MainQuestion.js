@@ -28,7 +28,7 @@ const MainQuestion = () => {
 
   async function getUpdatedAnswer() {
     await axios
-      .get(`http://localhost:4000/api/question/${id}`)
+      .get(`https://queue-interest.onrender.com/api/question/${id}`)
       .then((res) => {
         console.log(res.data[0]);
         setQuestionData(res.data[0]);
@@ -62,7 +62,7 @@ const MainQuestion = () => {
 
       await axios
         .post(
-          "http://localhost:4000/api/answer",
+          "https://queue-interest.onrender.com/api/answer",
           body,
           config
         )
@@ -86,7 +86,7 @@ const MainQuestion = () => {
   useEffect(() => {
     async function getQuestionDetails() {
       await axios
-        .get(`http://localhost:4000/api/question/${id}`)
+        .get(`https://queue-interest.onrender.com/api/question/${id}`)
         .then((res) => {
           console.log(res.data[0]);
           setQuestionData(res.data[0]);
@@ -108,7 +108,7 @@ const MainQuestion = () => {
 
       await axios
         .post(
-          `http://localhost:4000/api/comment/${id}`,
+          `https://queue-interest.onrender.com/api/comment/${id}`,
           body
         )
         .then((res) => {
@@ -131,7 +131,7 @@ const MainQuestion = () => {
 
   async function getQuestionDetails() {
     await axios
-      .get(`http://localhost:4000/api/question/${id}`)
+      .get(`https://queue-interest.onrender.com/api/question/${id}`)
       .then((res) => {
         console.log(res.data[0]);
         setQuestionData(res.data[0]);
@@ -147,7 +147,7 @@ const MainQuestion = () => {
 
       await axios({
         method: "PUT",
-        url: `http://localhost:4000/api/question/${id}/like`,
+        url: `https://queue-interest.onrender.com/api/question/${id}/like`,
         headers: {
           "Content-Type": "application/json",
         },
@@ -207,38 +207,37 @@ const MainQuestion = () => {
   // console.log(currAnswer);
 
   const handleLikeAnswerButton = async (_q) => {
-
     await axios({
-        method: "PUT",
-        url: `http://localhost:4000/api/answer/subdislike?q=${_q._id}`,
-        timeout: 3000,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        data: userData,
-      })
+      method: "PUT",
+      url: `https://queue-interest.onrender.com/api/answer/${_q._id}/like`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data:
+        userData,
+    })
         .then((data) => {
           console.log(data);
-          console.log("votes deleted");
+          console.log("votes changed");
           setLikeButtonPress(false);
         })
         .catch((err) => console.log(err));
 
-      await axios({
-        method: "PUT",
-        url: `http://localhost:4000/api/answer/addvote?q=${_q._id}`,
-        timeout: 3000,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        data: userData,
-      })
-        .then((data) => {
-          console.log(data);
-          console.log("updated votes");
-          setLikeButtonPress(true);
-        })
-        .catch((err) => console.log(err));
+      // await axios({
+      //   method: "PUT",
+      //   url: `http://localhost:4000/api/answer/answer/addvote?q=${_q._id}`,
+      //   timeout: 3000,
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   data: userData,
+      // })
+      //   .then((data) => {
+      //     console.log(data);
+      //     console.log("updated votes");
+      //     setLikeButtonPress(true);
+      //   })
+      //   .catch((err) => console.log(err));
 
         getQuestionDetails();
 
@@ -284,8 +283,8 @@ const MainQuestion = () => {
 
   const handleDelete = async (q) => {
     await axios({
-        method: "DELETE",
-        url: `http://localhost:4000/api/answer/deleteanswer?q=${q._id}`,
+        method: "PUT",
+        url: `https://queue-interest.onrender.com/api/answer/delete/${q._id}`,
         timeout: 3000,
         headers: {
           "Content-Type": "application/json",
@@ -295,6 +294,7 @@ const MainQuestion = () => {
         .then((data) => {
           console.log(data);
           console.log("question deleted");
+          window.alert("Answer has been deleted")
         })
         .catch((err) => console.log(err));
 
@@ -417,6 +417,7 @@ const MainQuestion = () => {
             </p>
           </div>
           {questionData?.answerDetails?.map((_q) => (
+            
             <div key={_q?._id} className="all-answers-container answer-flex">
               <div className="all-questions-left">
                 <div className="all-options">

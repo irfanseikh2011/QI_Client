@@ -18,7 +18,7 @@ const Main = ({ questions }) => {
 
   const handleSearch = async () => {
     if(searchValue!== ""){
-    await axios.get(`http://localhost:4000/api/question/questions/search?title=${searchValue}`).then((res) => {
+    await axios.get(`https://queue-interest.onrender.com/api/question/questions/search?title=${searchValue}`).then((res) => {
       setQuestionsDisplay(res.data);
   }).catch((err)=> {
       console.log("Errorr",err);
@@ -53,7 +53,7 @@ const Main = ({ questions }) => {
 
   const handleFilterOption = async (e) => {
     const tag = e.target.innerText;
-    await axios.get(`http://localhost:4000/api/filter?tag=${tag}`).then((res) => {
+    await axios.get(`https://queue-interest.onrender.com/api/question/questions/filter?tag=${tag}`).then((res) => {
       setQuestionsDisplay(res.data);
     }).catch((err)=> {
       console.log("Errorr",err);
