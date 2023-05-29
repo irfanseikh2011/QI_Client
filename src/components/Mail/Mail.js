@@ -26,7 +26,7 @@ const Mail = () => {
 
     // console.log(q);
 
-    const avator = 'https://cdn-icons.flaticon.com/png/512/2202/premium/2202112.png?token=exp=1655376837~hmac=bf7e3c6ce18136a3abac712fea422974';
+    const avator = 'https://cdn1.iconfinder.com/data/icons/flat-business-icons/128/user-256.png';
     const [formvalue, setFormValue] = useState("");
 
     const sendMessage = async (e) => {
@@ -47,6 +47,7 @@ const Mail = () => {
 
     const dummy = useRef()
 
+    console.log(messages)
 
   return (
     <div className='mainbox'>
